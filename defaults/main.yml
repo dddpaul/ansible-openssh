@@ -1,0 +1,13 @@
+flush_all: false
+
+openssh_service_name: openssh
+openssh_docker_image: docker.moscow.alfaintra.net/dddpaul/alpine-sshd:1.2
+
+openssh_host_port: 22
+openssh_host_memory: 64m
+openssh_host_config_dir: /etc/openssh
+openssh_keys:
+openssh_allow_tcp_forwarding: "yes"
+openssh_tcp_keep_alive: "yes"
+openssh_client_alive_interval: 0
+openssh_client_alive_count_max: 3

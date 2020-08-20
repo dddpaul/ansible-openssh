@@ -1,0 +1,11 @@
+- name: install service
+  become: yes
+  become_user: root
+  include: install.yml
+  when: not flush_all
+
+- name: uninstall service
+  become: yes
+  become_user: root
+  include: uninstall.yml
+  when: flush_all

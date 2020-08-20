@@ -1,0 +1,31 @@
+# Remove openssh
+---
+
+- name: stop and disable service
+  systemd:
+    name: "{{ openssh_service_name }}"
+    state: stopped
+    enabled: no
+  ignore_errors: yes
+
+- name: remove users configuration
+  file:
+    path: "{{ openssh_host_config_dir }}/users.csv"
+    state: absent
+
+- name: remove keys
+  file:
+    path: "{{ openssh_host_config_dir }}/{{ item.filename }}"
+    state: absent
+  loop: "{{ openssh_keys }}"
+
+- name: remove configuration directory
+  file:
+    path: "{{ openssh_host_config_dir }}"
+    state: absent
+
+- name: remove systemd service
+  file:
+    dest: "/etc/systemd/system/{{ openssh_service_name }}.service"
+    state: absent
+  notify: reload systemctl daemon

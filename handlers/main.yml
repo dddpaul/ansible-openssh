@@ -1,0 +1,10 @@
+---
+
+- name: "reload systemctl daemon"
+  become: true
+  shell: systemctl daemon-reload
+  notify: reset failed
+
+- name: "reset failed"
+  become: true
+  shell: systemctl reset-failed

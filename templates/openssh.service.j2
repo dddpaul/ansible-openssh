@@ -1,0 +1,24 @@
+[Unit]
+Description=SSH daemon
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run --rm \
+  --name {{ openssh_service_name }} \
+  -p {{ openssh_host_port }}:22 \
+  -m {{ openssh_host_memory }} \
+{% for item in openssh_keys %}
+  -v {{ openssh_host_config_dir }}/{{ item.filename }}:/etc/ssh/{{ item.filename }} \
+{% endfor %}
+  -v {{ openssh_host_config_dir }}/users.csv:/etc/ssh/users.csv \
+  -e SSHD_ALLOW_TCP_FORWARDING={{ openssh_allow_tcp_forwarding }} \
+  -e SSHD_TCP_KEEP_ALIVE={{ openssh_tcp_keep_alive }} \
+  -e SSHD_CLIENT_ALIVE_INTERVAL={{ openssh_client_alive_interval }} \
+  -e SSHD_CLIENT_ALIVE_COUNT_MAX={{ openssh_client_alive_count_max }} \
+  {{ openssh_docker_image }}
+ExecStop=/usr/bin/docker stop -t 10 {{ openssh_service_name }}
+
+[Install]
+WantedBy=default.target

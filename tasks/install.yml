@@ -1,0 +1,55 @@
+# Install openssh
+---
+
+- name: create configuration directory
+  file:
+    path: "{{ openssh_host_config_dir }}"
+    state: directory
+
+- name: copy keys
+  copy:
+    content: "{{ item.content }}"
+    dest: "{{ openssh_host_config_dir }}/{{ item.filename }}"
+    owner: root
+    mode: 0600
+    backup: yes
+  loop: "{{ openssh_keys }}"
+
+- name: merge all user files in one list
+  include_vars:
+    name: openssh_users
+    dir: "{{ openssh_users_dir }}"
+  tags:
+    - configure
+
+- name: copy users configuration
+  template:
+    src: users.csv.j2
+    dest: "{{ openssh_host_config_dir }}/users.csv"
+    backup: yes
+  tags:
+    - configure
+
+- name: add trailing empty line to users configuration
+  lineinfile:
+    dest: "{{ openssh_host_config_dir }}/users.csv"
+    line: ''
+  tags:
+    - configure
+
+- name: copy systemd service
+  template:
+    src: openssh.service.j2
+    dest: "/etc/systemd/system/{{ openssh_service_name }}.service"
+    backup: yes
+  tags:
+    - configure
+
+- name: enable and restart systemd service
+  systemd:
+    name: "{{ openssh_service_name }}"
+    daemon_reload: yes
+    state: restarted
+    enabled: yes
+  tags:
+    - configure

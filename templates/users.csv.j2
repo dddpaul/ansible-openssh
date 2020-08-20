@@ -1,0 +1,3 @@
+{% for login, user in openssh_users.items() %}
+{{ login }},{{ user.password_hash }},{{ user.ssh_public_key }}
+{% endfor %}
