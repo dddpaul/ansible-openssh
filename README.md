@@ -47,7 +47,7 @@ Set `openssh_cap_add` and `openssh_cap_drop` to control container permissions. F
 
 ```yaml
 openssh_cap_add:
-  - CAP_SYS_PTRACE
+  - SYS_PTRACE
 ```
 
 See https://man7.org/linux/man-pages/man7/capabilities.7.html for futher details.
