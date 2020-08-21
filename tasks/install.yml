@@ -13,8 +13,8 @@
     owner: root
     mode: 0600
     backup: yes
-    when: item.content is defined
   loop: "{{ openssh_keys }}"
+  when: item.content is defined
 
 - name: merge all user files in one list
   include_vars:
