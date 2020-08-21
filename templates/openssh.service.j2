@@ -13,9 +13,9 @@ ExecStart=/usr/bin/docker run --rm \
 {% if openssh_privileged %}
   --privileged \
 {% endif %}
-{% for item in openssh_cap_add %}}
+{% for item in openssh_cap_add %}
   --cap-add {{ item }} \
-{% endfor %}}
+{% endfor %}
 {% for item in openssh_cap_drop %}
   --cap-drop {{ item }} \
 {% endfor %}
