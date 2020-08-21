@@ -25,11 +25,9 @@ Host SSH keys are specified with `openssh_keys` variable:
 
 ```yaml
 openssh_keys:
-  - type: rsa
-    filename: ssh_host_rsa_key
+  - filename: ssh_host_rsa_key
     content: "{{ lookup('file', 'keys/ssh_host_rsa_key') }}"
-  - type: rsa_pub
-    filename: ssh_host_rsa_key.pub
+  - filename: ssh_host_rsa_key.pub
     content: "{{ lookup('file', 'keys/ssh_host_rsa_key.pub') }}"
     ...
 ```
@@ -38,9 +36,7 @@ These keys will be mounted inside container from `openssh_host_config_dir`. To m
 
 ```yaml
 openssh_keys:
-  - type: rsa
-    filename: ssh_host_rsa_key
-  - type: rsa_pub
-    filename: ssh_host_rsa_key.pub
+  - filename: ssh_host_rsa_key
+  - filename: ssh_host_rsa_key.pub
     ...
 ```
