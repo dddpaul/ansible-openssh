@@ -10,6 +10,15 @@ ExecStart=/usr/bin/docker run --rm \
   --net {{ openssh_network }} \
   -p {{ openssh_host_port }}:22 \
   -m {{ openssh_host_memory }} \
+{% if openssh_privileged %}
+  --privileged \
+{% endif %}
+{% for item in openssh_cap_add %}}
+  --cap-add {{ item }} \
+{% endfor %}}
+{% for item in openssh_cap_drop %}
+  --cap-drop {{ item }} \
+{% endfor %}
 {% for item in openssh_keys %}
 {% if item.content is defined %}
   -v {{ openssh_host_config_dir }}/{{ item.filename }}:/etc/ssh/{{ item.filename }} \
