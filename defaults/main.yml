@@ -2,7 +2,7 @@ flush_all: false
 
 openssh_service_name: openssh
 openssh_docker_image: dddpaul/alpine-sshd:1.12
-openssh_network: docker0
+openssh_network: bridge
 
 openssh_host_port: 22
 openssh_host_memory: 64m
