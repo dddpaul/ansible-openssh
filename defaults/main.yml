@@ -1,7 +1,7 @@
 flush_all: false
 
 openssh_service_name: openssh
-openssh_docker_image: dddpaul/alpine-sshd:1.12
+openssh_docker_image: dddpaul/alpine-sshd:1.14
 openssh_network: bridge
 
 openssh_host_port: 22
@@ -17,3 +17,6 @@ openssh_allow_tcp_forwarding: "yes"
 openssh_tcp_keep_alive: "yes"
 openssh_client_alive_interval: 0
 openssh_client_alive_count_max: 3
+openssh_log_level: INFO
+openssh_pubkey_authentication: "yes"
+openssh_password_authentication: "yes"
