@@ -4,8 +4,8 @@ galaxy_info:
   description: "Dockerized OpenSSH role"
   license: Apache v2
 
-galaxy_tags:
-  - docker
-  - container
+  galaxy_tags:
+    - docker
+    - container
 
 dependencies: []
