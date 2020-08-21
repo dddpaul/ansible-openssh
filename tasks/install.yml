@@ -19,6 +19,7 @@
   include_vars:
     name: openssh_users
     dir: "{{ openssh_users_dir }}"
+  when: openssh_users is not defined
   tags:
     - configure
 
