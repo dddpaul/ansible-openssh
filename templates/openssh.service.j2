@@ -11,7 +11,7 @@ ExecStart=/usr/bin/docker run --rm \
   -p {{ openssh_host_port }}:22 \
   -m {{ openssh_host_memory }} \
 {% for item in openssh_keys %}
-{% if item.content %}
+{% if item.content is defined %}
   -v {{ openssh_host_config_dir }}/{{ item.filename }}:/etc/ssh/{{ item.filename }} \
 {% else %}
   -v /etc/ssh/{{ item.filename }}:/etc/ssh/{{ item.filename }} \
