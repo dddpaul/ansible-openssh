@@ -1,7 +1,7 @@
 flush_all: false
 
 openssh_service_name: openssh
-openssh_docker_image: dddpaul/alpine-sshd:1.14
+openssh_docker_image: dddpaul/alpine-sshd:1.15
 openssh_network: bridge
 
 openssh_host_port: 22
