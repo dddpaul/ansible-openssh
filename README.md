@@ -40,3 +40,14 @@ openssh_keys:
   - filename: ssh_host_rsa_key.pub
     ...
 ```
+
+### Linux capabilities
+
+Set `openssh_cap_add` and `openssh_cap_drop` to control container permissions. For example, grant permission to inspect processes (is necessary for using `lsof` inside container) with CAP_SYS_PTRACE capability.
+
+```yaml
+openssh_cap_add:
+  - CAP_SYS_PTRACE
+```
+
+See https://man7.org/linux/man-pages/man7/capabilities.7.html for futher details.
