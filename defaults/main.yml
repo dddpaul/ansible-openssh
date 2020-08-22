@@ -21,7 +21,7 @@ openssh_log_level: INFO
 openssh_pubkey_authentication: "yes"
 openssh_password_authentication: "yes"
 
-openssh_options:
+openssh_default_options:
   allow_tcp_forwarding: "{{ openssh_allow_tcp_forwarding }}"
   tcp_keep_alive: "{{ openssh_tcp_keep_alive }}"
   client_alive_interval: "{{ openssh_client_alive_interval }}"
@@ -29,3 +29,5 @@ openssh_options:
   log_level: "{{ openssh_log_level }}"
   pubkey_authentication: "{{ openssh_pubkey_authentication }}"
   password_authentication: "{{ openssh_password_authentication }}"
+
+openssh_options: "{{ openssh_default_options }}"

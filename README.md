@@ -51,3 +51,19 @@ openssh_cap_add:
 ```
 
 See https://man7.org/linux/man-pages/man7/capabilities.7.html for futher details.
+
+### SSH configuration options
+
+Set `openssh_options` dictionary with lowercased and underscored `/etc/ssh/sshd_config`  options. For example:
+
+```yaml
+openssh_options:
+  password_authentication: no # Becomes "PasswordAuthentication no" in /etc/ssh/sshd_config
+```
+
+But be awared that
+
+
+environment variables prefixed with `SSHD_` to pass values to `/etc/ssh/sshd_config` inside container, for example, `SSHD_ALLOW_TCP_FORWARDING=yes` becomes `AllowTcpForwarding yes`.
+
+See `man sshd_config` for detailed information about configuration options.
