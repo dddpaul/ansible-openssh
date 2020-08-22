@@ -13,10 +13,11 @@ openssh_privileged: false
 openssh_cap_add: []
 openssh_cap_drop: []
 
-openssh_allow_tcp_forwarding: "yes"
-openssh_tcp_keep_alive: "yes"
-openssh_client_alive_interval: 0
-openssh_client_alive_count_max: 3
-openssh_log_level: INFO
-openssh_pubkey_authentication: "yes"
-openssh_password_authentication: "yes"
+openssh_options:
+  tcp_forwarding: "yes"
+  keep_alive: "yes"
+  alive_interval: 0
+  client_alive_count_max: 3
+  log_level: INFO
+  pubkey_authentication: "yes"
+  password_authentication: "yes"

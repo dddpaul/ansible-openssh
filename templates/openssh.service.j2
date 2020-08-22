@@ -27,13 +27,9 @@ ExecStart=/usr/bin/docker run --rm \
 {% endif %}
 {% endfor %}
   -v {{ openssh_host_config_dir }}/users.csv:/etc/ssh/users.csv \
-  -e SSHD_ALLOW_TCP_FORWARDING={{ openssh_allow_tcp_forwarding }} \
-  -e SSHD_TCP_KEEP_ALIVE={{ openssh_tcp_keep_alive }} \
-  -e SSHD_CLIENT_ALIVE_INTERVAL={{ openssh_client_alive_interval }} \
-  -e SSHD_CLIENT_ALIVE_COUNT_MAX={{ openssh_client_alive_count_max }} \
-  -e SSHD_LOG_LEVEL={{ openssh_log_level }} \
-  -e SSHD_PUBKEY_AUTHENTICATION={{ openssh_pubkey_authentication }} \
-  -e SSHD_PASSWORD_AUTHENTICATION={{ openssh_password_authentication }} \
+{% for key, val in openssh_options.items() %}
+  -e SSHD_{{ key | upper }}={{ val }} \
+{% endfor %}
   {{ openssh_docker_image }}
 ExecStop=/usr/bin/docker stop -t 10 {{ openssh_service_name }}
 
