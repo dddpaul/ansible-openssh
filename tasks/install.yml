@@ -6,9 +6,6 @@
     path: "{{ openssh_host_config_dir }}"
     state: directory
 
-- debug: var=openssh_default_options
-- debug: var=openssh_options
-
 - name: copy keys
   copy:
     content: "{{ item.content }}"

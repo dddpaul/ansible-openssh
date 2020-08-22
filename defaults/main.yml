@@ -13,21 +13,13 @@ openssh_privileged: false
 openssh_cap_add: []
 openssh_cap_drop: []
 
-openssh_allow_tcp_forwarding: "yes"
-openssh_tcp_keep_alive: "yes"
-openssh_client_alive_interval: 0
-openssh_client_alive_count_max: 3
-openssh_log_level: INFO
-openssh_pubkey_authentication: "yes"
-openssh_password_authentication: "yes"
-
 openssh_default_options:
-  allow_tcp_forwarding: "{{ openssh_allow_tcp_forwarding }}"
-  tcp_keep_alive: "{{ openssh_tcp_keep_alive }}"
-  client_alive_interval: "{{ openssh_client_alive_interval }}"
-  client_alive_count_max: "{{ openssh_client_alive_count_max }}"
-  log_level: "{{ openssh_log_level }}"
-  pubkey_authentication: "{{ openssh_pubkey_authentication }}"
-  password_authentication: "{{ openssh_password_authentication }}"
+  allow_tcp_forwarding: "yes"
+  tcp_keep_alive: "yes"
+  client_alive_interval: 0
+  client_alive_count_max: 3
+  log_level: INFO
+  pubkey_authentication: "yes"
+  password_authentication: "yes"
 
 openssh_options: "{{ openssh_default_options }}"
